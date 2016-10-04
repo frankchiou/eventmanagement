@@ -1,0 +1,25 @@
+<div id="signIn">
+	<div id="page-header" class="page-header">
+		<h1>User Sign-In</h1>
+	</div>
+
+	<div id="accountInfo" class="panel panel-default">
+		<div class="panel-body">
+			<form name="signIn" ng-submit="submit()">
+				<div class="form-group">
+					<input id="userName" type="text" class="form-control" placeholder="User Name" ng-model="data.userName">
+				</div>
+				<div class="form-group">
+					<input id="password" type="password" class="form-control" placeholder="Password" ng-model="data.password">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-lg btn-block">Sign In</button>
+				</div>
+			</form>
+		</div>
+		
+		<div id="signupLink" class="panel-footer" style="text-align:center;"><a href="#/signup"><strong>Create Account</strong></a></div>
+	</div>
+	
+	{{data}}
+</div>

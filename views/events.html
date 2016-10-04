@@ -1,0 +1,52 @@
+<div id="events">
+	<div id="page-header" class="page-header">
+		<h1>Event List and Registration</h1>
+	</div>
+
+	<table class="table table-striped table-condensed">
+		<thead>
+			<th>Game</th>
+			<th>Format</th>
+			<th>Time</th>
+			<th>Cost</th>
+			<th>Enrollment Status</th>
+			<th></th>
+		</thead>
+		<tr>
+			<td>
+				<select id="games" ng-model="selected.game" ng-options="game.name for game in games">
+					<option value=""></option>
+				</select>
+			</td>
+			<td></td>
+			<td>
+				<select id="days" ng-model="selected.day" ng-options="day.name for day in days">
+					<option value=""></option>
+				</select>
+			</td>
+			<td></td>
+			<td>
+				<select id="enrolled" ng-model="selected.enrolled">
+					<option value=""></option>
+					<option value="true">Registered</option>
+					<option value="false">Not Registered</option>
+				</select>
+			</td>
+			<td></td>
+		</tr>
+		<tr ng-repeat="event in events | filter:{game:selected.game.name} | eventDayFilter:selected.day | filter:{enrolled:selected.enrolled}">
+			<td>{{event.game}}</td>
+			<td>{{event.format}}</td>
+			<td>{{event.time | date:"EEEE h:mm:ss a"}}</td>
+			<td>{{event.price | currency}}</td>
+			<td>
+				<button class="btn btn-block" ng-class="{'btn-success':event.enrolled, 'btn-default':!event.enrolled}" ng-click="setEnrollStatus(event.id, event.enrolled)">
+					{{event.enrolled | enrollment}}
+				</button>
+			</td>
+			<td><a href="#/events/{{event.id}}">More Info</a></td>
+		</tr>
+	</table>
+	
+	{{ selected }}
+</div>

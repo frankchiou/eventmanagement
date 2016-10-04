@@ -1,0 +1,128 @@
+<div id="userSignUp">
+	<div id="page-header" class="page-header">
+		<h1>User Account</h1>
+	</div>
+
+	<form class="form-horizontal" name="signup" ng-submit="createUser()">
+		<div id="accountInfo" class="panel panel-default">
+			<div id="accInfoHeading" class="panel-heading"><h3 class="panel-title">Account Information</h3></div>
+			<div class="panel-body">
+				<div id="uName-group" class="form-group" ng-class="{'has-error':signup.username.$invalid && signup.username.$touched}">
+					<label for="username" class="col-sm-2 control-label">User Name</label>
+					<div class="col-sm-10">
+						<input id="username" name="username" type="text" class="form-control" placeholder="3-20 characters. Letters, numbers, or underscore." ng-model="data.userName"
+							ng-required="true" ng-minlength="3" ng-maxlength="20" ng-pattern="/^[\w]+$/" novalidate>
+						<div ng-messages="signup.username.$error" role="alert" ng-show="signup.username.$touched" multiple>
+							<div ng-message="required">A user name is required.</div>
+							<div ng-message="minlength">User names must be at least three characters long.</div>
+							<div ng-message="maxlength">User names must be at most twenty characters long.</div>
+							<div ng-message="pattern">User names can only contain alphanumeric characters and underscores.</div>
+						</div>
+					</div>
+				</div>
+				<div id="newPass-group" class="form-group" ng-class="{'has-error':signup.newPassword.$invalid && signup.newPassword.$touched}">
+					<label for="newPassword" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-10">
+						<input id="newPassword" name="newPassword" type="password" class="form-control" placeholder="Minimum 8 characters." ng-model="data.newPassword"
+							ng-required="true" ng-minlength="8" ng-maxlength="30" novalidate>
+						<div ng-messages="signup.newPassword.$error" role="alert" ng-show="signup.newPassword.$touched" multiple>
+							<div ng-message="required">A Password is required.</div>
+							<div ng-message="minlength">Passwords must be at least eight characters long.</div>
+							<div ng-message="maxlength">Passwords must be at most thirty characters long.</div>
+						</div>
+					</div>
+				</div>
+				<div id="conPass-group" class="form-group" ng-show="signup.newPassword.$valid && signup.newPassword.$touched" ng-class="{'has-error':signup.confirmPassword.$invalid && signup.confirmPassword.$touched}">
+					<label for="confirmPassword" class="col-sm-2 control-label">Confirm Password</label>
+					<div class="col-sm-10">
+						<input id="confirmPassword" name="confirmPassword" type="password" class="form-control" placeholder="Minimum 8 characters."
+							ng-model="data.confirmPassword" ng-required="true" novalidate>
+						<div ng-show="data.newPassword !== data.confirmPassword && signup.confirmPassword.$touched">Passwords do not match.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+		<div id="personalInfo" class="panel panel-default">
+			<div id="perInfoHeading" class="panel-heading"><h3 class="panel-title">Personal Information</h3></div>
+			<div class="panel-body">
+				<div id="fname-group" class="form-group" ng-class="{'has-error':signup.firstName.$invalid && signup.firstName.$touched}">
+					<label for="firstName" class="col-sm-2 control-label">First Name</label>
+					<div class="col-sm-10">
+						<input id="firstName" name="firstName" type="text" class="form-control" placeholder="Given Name" ng-model="data.firstName"
+							ng-required="true" novalidate>
+						<div ng-messages="signup.firstName.$error" role="alert" ng-show="signup.firstName.$touched" multiple>
+						</div>
+					</div>
+				</div>
+				<div id="lname-group" class="form-group" ng-class="{'has-error':signup.lastName.$invalid && signup.lastName.$touched}">
+					<label for="lastName" class="col-sm-2 control-label">Last Name</label>
+					<div class="col-sm-10">
+						<input id="lastName" name="lastName" type="text" class="form-control" placeholder="Family Name" ng-model="data.lastName"
+							ng-required="true" novalidate>
+						<div ng-messages="signup.lastName.$error" role="alert" ng-show="signup.lastName.$touched" multiple>
+							<div ng-message="required">Last name is required.</div>
+						</div>
+					</div>
+				</div>
+				<div id="phone-group" class="form-group" ng-class="{'has-error':signup.phone.$invalid && signup.phone.$touched}">
+					<label for="phone" class="col-sm-2 control-label">Phone Number</label>
+					<div class="col-sm-10">
+						<input id="phone" name="phone" type="tel" class="form-control" placeholder="This will allow us to text you when an event is about to start." ng-model="data.phoneNumber"
+							ng-pattern="/^[0-9]{10}$/">
+						<div ng-messages="signup.phone.$error" role="alert" ng-show="signup.phone.$touched" multiple>
+							<div ng-message="pattern">Phone numbers must consist of exactly ten digits.</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="conInfo" class="panel panel-default">
+			<div id="perInfoHeading" class="panel-heading"><h3 class="panel-title">Convention Membership Information</h3></div>
+			<div class="panel-body">
+				<div id="badgenum-group" class="form-group" ng-class="{'has-error':signup.badgeNumber.$invalid}">
+					<label for="badgeNumber" class="col-sm-2 control-label">Badge Number</label>
+					<div class="col-sm-10">
+						<input id="badgeNumber" name="badgeNumber" type="number" class="form-control" placeholder="Convention Badge Number" ng-model="data.badgeNumber"
+							ng-required="true" novalidate>
+						<div ng-messages="signup.badgeNumber.$error" role="alert" multiple>
+							<div ng-message="required">Please enter this year's badge number</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="gamerInfo" class="panel panel-default">
+			<div id="gamerInfoHeading" class="panel-heading"><h3 class="panel-title">Organized Play Information</h3></div>
+			<div class="panel-body">
+				<div id="ygo-group" class="form-group">
+					<label for="ygo" class="col-sm-2 control-label">COSSY</label>
+					<div class="col-sm-10">
+						<input id="ygo" type="number" class="form-control" placeholder="Yu-Gi-Oh!" ng-model="data.cossy">
+					</div>
+				</div>
+				<div id="mtg-group" class="form-group">
+					<label for="mtg" class="col-sm-2 control-label">DCI</label>
+					<div class="col-sm-10">
+						<input id="mtg" type="number" class="form-control" placeholder="Magic: The Gathering" ng-model="data.dci">
+					</div>
+				</div>
+				<div id="pkmn-group" class="form-group">
+					<label for="pkmn" class="col-sm-2 control-label">POP</label>
+					<div class="col-sm-10">
+						<input id="pkmn" type="number" class="form-control" placeholder="Pokemon" ng-model="data.pop">
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<button type="submit" class="btn btn-success btn-lg btn-block">Sign Up</button>
+		</div>
+	</form>
+	
+	{{data}}
+	
+</div>

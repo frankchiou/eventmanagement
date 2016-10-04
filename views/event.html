@@ -1,0 +1,38 @@
+<div id="event">
+	<div id="page-header" class="page-header">
+		<h1>{{event.format}}</h1>
+		<h2>{{event.game}}</h2>
+	</div>
+
+	<form class="form-horizontal" name="event">
+		<div id="eventInfo" class="panel panel-default">
+			<div id="eventHeader" class="panel-heading"><h3 class="panel-title">Event Information</h3></div>
+			<div class="panel-body">
+				<div id="time-group" class="form-group">
+					<label for="time" class="col-sm-2 control-label">Time</label>
+					<div class="col-sm-10">
+						{{event.time | date: "EEEE, MMM dd, yyyy, h:mm:ss a"}}
+					</div>
+				</div>
+				<div id="cost-group" class="form-group">
+					<label for="cost" class="col-sm-2 control-label">Cost</label>
+					<div class="col-sm-10">
+						{{event.price | currency}}
+					</div>
+				</div>
+				<div id="prize-group" class="form-group">
+					<label for="prize" class="col-sm-2 control-label">Prizes</label>
+					<div class="col-sm-10">
+						{{event.prizes}}
+					</div>
+				</div>
+				<div id="desc-group" class="form-group">
+					<label for="prize" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						{{event.description}}
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,43 @@
+<html ng-app="eventManagement" ng-controller="emMainCtrl">
+	<head>
+		<title>{{::convention}} {{::department}} Home</title>
+		
+		<link rel="stylesheet" href="styles/bootstrap.min.css">
+		<link rel="stylesheet" href="styles/em.css">
+		
+		<script src="libraries/jquery-2.1.4.min.js"></script>
+		<script src="libraries/angular.min.js"></script>
+		<script src="libraries/angular-messages.min.js"></script>
+		<script src="libraries/angular-route.min.js"></script>
+		
+		<script src="scripts/em.js"></script>
+		<script src="scripts/em-event.js"></script>
+		<script src="scripts/em-events.js"></script>
+		<script src="scripts/em-games.js"></script>
+		<script src="scripts/em-signin.js"></script>
+		<script src="scripts/em-user.js"></script>
+	</head>
+
+	<body class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#/">
+						Home
+					</a>
+				</div>
+				<div class="collapse navbar-collapse" id="menu">
+					<ul class="nav navbar-nav">
+						<li><a href="#/events">Events</a></li>
+						<li><a href="#/games">Game Library</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active" ng-show="loggedin"><a href="#/user">{{loggedin.username}}</a></li>
+						<li class="active" ng-show="!loggedin"><a href="#/signin">Sign In</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div ng-view></div>
+	</body>
+</html>
